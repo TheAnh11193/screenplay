@@ -1,16 +1,11 @@
 package utils;
-import net.serenitybdd.model.environment.EnvironmentSpecificConfiguration;
-import net.thucydides.model.environment.SystemEnvironmentVariables;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-public class CsvDataLoader {
-//    private static final String FILE_PATH =
-//            EnvironmentSpecificConfiguration.from(SystemEnvironmentVariables.createEnvironmentVariables())
-//                    .getProperty("csv.userdata");
+public class CsvDataReader {
     private static final String FILE_PATH = SerenityConfigReader.get("csv.userdata");
 
     public static Map<String, String> getUserData(String userId) {

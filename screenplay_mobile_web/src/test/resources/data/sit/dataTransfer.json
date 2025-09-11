@@ -1,0 +1,10 @@
+{
+  "happy": {
+    "username": "validUser",
+    "password": "ValidPass123"
+  },
+  "unhappy": {
+    "username": "invalidUser",
+    "password": "wrongPass"
+  }
+}
