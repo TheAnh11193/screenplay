@@ -1,3 +1,4 @@
-userId,username,password,fullname
-user1,ntanh15,Novembernvb012@,the anh
-user2,ntanh15,secret456,Mary Jane
+role,username,password,name
+user,anhnvv@thanhcon.vn,1,anh
+reviewer,phongph@thanhcong.vn,1,phong
+approver,thanhnt@thanhcon.vn,1,thanh

@@ -1,10 +1,12 @@
 package hooks;
 
 import drivers.DriverFactory;
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
+import net.serenitybdd.screenplay.actions.Open;
 import org.openqa.selenium.Dimension;
 import utils.SerenityConfigReader;
 
@@ -21,60 +23,60 @@ import java.util.Map;
 
 
 public class DriverHooks {
-    public static Actor webUser;
-    public static Actor androidUser;
-    public static Actor iosUser;
+    private static final Map<String, WebDriver> actorDrivers = new HashMap<>();
+    private static String currentActor = null;
 
     private static WebDriver webDriver;
-    private static AndroidDriver androidDriver;
-    private static IOSDriver iosDriver;
+    private static AppiumDriver mobileDriver;
 
     private static AppiumDriverLocalService appiumService;
 
-    @Before
-    public void setUp() throws Exception {
-        String platforms = SerenityConfigReader.get("platform", "web").toLowerCase();
-        System.out.println(">>> Running Web + " + platforms.toUpperCase());
-
-        for (String p : platforms.split(",")) {
-            switch (p.trim()) {
-                case "web": {
-                    webDriver = DriverFactory.createWebDriver();
-                    // ✅ Force maximize or set default resolution
-                    try {
-                        webDriver.manage().window().maximize();
-                    } catch (Exception e) {
-                        webDriver.manage().window().setSize(new Dimension(1920, 1080));
-                    }
-                    break;
-                }
-                case "android": {
-                    startAppiumIfNeeded();  // 👈 auto-start Appium
-                    androidDriver = DriverFactory.createAndroidDriver();
-                    androidUser = Actor.named("AndroidUser").whoCan(BrowseTheWeb.with(androidDriver));
-                    Serenity.setSessionVariable("androidUser").to(androidUser);
-                    Serenity.setSessionVariable("androidDriver").to(androidDriver);
-                    break;
-                }
-                case "ios": {
-                    startAppiumIfNeeded();  // 👈 auto-start Appium
-                    iosDriver = DriverFactory.createIOSDriver();
-                    iosUser = Actor.named("IOSUser").whoCan(BrowseTheWeb.with(iosDriver));
-                    Serenity.setSessionVariable("iosUser").to(iosUser);
-                    Serenity.setSessionVariable("iosDriver").to(iosDriver);
-                    break;
-                }
-                default:
-                    throw new IllegalArgumentException("Unknown platform: " + p);
-            }
+    public static Actor loginAs(String role, String url) throws Exception {
+        // ✅ Always close current driver when switching
+        if (currentActor != null) {
+            closeActorDriver(currentActor);
         }
+
+        // ✅ Get platform list
+        String platforms = SerenityConfigReader.get("platform", "web").toLowerCase();
+
+        Actor actor;
+        if (platforms.contains("web") && url != null && url.startsWith("http")) {
+            // ---- Web login
+            webDriver = DriverFactory.createWebDriver();
+            try {
+                webDriver.manage().window().maximize();
+            } catch (Exception e) {
+                webDriver.manage().window().setSize(new Dimension(1920, 1080));
+            }
+            actorDrivers.put(role, webDriver);
+            actor = Actor.named(role).whoCan(BrowseTheWeb.with(webDriver));
+            actor.attemptsTo(Open.url(url));
+        }
+        else if (platforms.contains("android") || platforms.contains("ios")) {
+            // ---- Mobile login
+//            startAppiumIfNeeded(platforms);
+            mobileDriver = platforms.contains("android")
+                    ? DriverFactory.createAndroidDriver()
+                    : DriverFactory.createIOSDriver();
+
+            actorDrivers.put(role, mobileDriver);
+            actor = Actor.named(role).whoCan(BrowseTheWeb.with(mobileDriver));
+        }
+        else {
+            throw new IllegalArgumentException("❌ Unknown platform: " + platforms);
+        }
+
+        currentActor = role;
+        return actor;
     }
 
-    @After
-    public void tearDown() {
-        if (webDriver != null) webDriver.quit();
-        if (androidDriver != null) androidDriver.quit();
-        if (iosDriver != null) iosDriver.quit();
+    private static void closeActorDriver(String role) {
+        WebDriver driver = actorDrivers.get(role);
+        if (driver != null) {
+            driver.quit();
+            actorDrivers.remove(role);
+        }
     }
 
     private static void startAppiumIfNeeded() {
