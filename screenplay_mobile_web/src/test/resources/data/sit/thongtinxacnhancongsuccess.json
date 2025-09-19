@@ -1,0 +1,110 @@
+{
+  "Gio vao": {
+    "Thời điểm cần xác nhận công": "Giờ vào",
+    "Lý do xác nhận giờ vào": "Quên chấm công giờ vào/ra",
+    "Chọn giờ vào": "08:00",
+    "Ghi chú": "test"
+  },
+  "Gio vao 1": {
+    "Thời điểm cần xác nhận công": "Giờ vào",
+    "Lý do xác nhận giờ vào": "Đi muộn/về sớm",
+    "Lý do đi muộn": "Tai nạn, thiên tai, hỏa hoạn",
+    "Ghi chú": "test"
+  },
+  "Gio vao 2": {
+    "Thời điểm cần xác nhận công": "Giờ vào",
+    "Lý do xác nhận giờ vào": "Vắng mặt vì lý do khác",
+    "Chọn giờ vào": "08:00",
+    "Ghi chú": "test"
+  },
+  "Gio ra": {
+    "Thời điểm cần xác nhận công": "Giờ ra",
+    "Lý do xác nhận giờ ra": "Quên chấm công giờ vào/ra",
+    "Chọn giờ ra": "16:00",
+    "Ghi chú": "test"
+  },
+  "Gio ra 1": {
+    "Thời điểm cần xác nhận công": "Giờ ra",
+    "Lý do xác nhận giờ ra": "Đi muộn/về sớm",
+    "Lý do về sớm": "Tai nạn, thiên tai, hỏa hoạn",
+    "Ghi chú": "test"
+  },
+  "Gio ra 2": {
+    "Thời điểm cần xác nhận công": "Giờ ra",
+    "Lý do xác nhận giờ ra": "Vắng mặt vì lý do khác",
+    "Chọn giờ ra": "16:00",
+    "Ghi chú": "test"
+  },
+  "Gio vao va gio ra": {
+    "Thời điểm cần xác nhận công": "Giờ vào và giờ ra",
+    "Lý do xác nhận giờ vào": "Quên chấm công giờ vào/ra",
+    "Lý do xác nhận giờ ra": "Quên chấm công giờ vào/ra",
+    "Chọn giờ vào ": "09:00",
+    "Chọn giờ ra ": "16:00",
+    "Ghi chú": "test"
+  },
+  "Gio vao va gio ra 1": {
+    "Thời điểm cần xác nhận công": "Giờ vào và giờ ra",
+    "Lý do xác nhận giờ vào": "Quên chấm công giờ vào/ra",
+    "Lý do xác nhận giờ ra": "Đi muộn/về sớm",
+    "Lý do về sớm": "Tai nạn, thiên tai, hỏa hoạn",
+    "Chọn giờ vào ": "09:00",
+    "Ghi chú": "test"
+  },
+  "Gio vao va gio ra 2": {
+    "Thời điểm cần xác nhận công": "Giờ vào và giờ ra",
+    "Lý do xác nhận giờ vào": "Quên chấm công giờ vào/ra",
+    "Lý do xác nhận giờ ra": "Vắng mặt vì lý do khác",
+    "Chọn giờ vào ": "09:00",
+    "Chọn giờ ra ": "16:00",
+    "Ghi chú": "test"
+  },
+  "Gio vao va gio ra 3": {
+    "Thời điểm cần xác nhận công": "Giờ vào và giờ ra",
+    "Lý do xác nhận giờ vào": "Đi muộn/về sớm",
+    "Lý do đi muộn": "Tai nạn, thiên tai, hỏa hoạn",
+    "Lý do xác nhận giờ ra": "Quên chấm công giờ vào/ra",
+    "Chọn giờ ra ": "16:00",
+    "Ghi chú": "test"
+  },
+  "Gio vao va gio ra 4": {
+    "Thời điểm cần xác nhận công": "Giờ vào và giờ ra",
+    "Lý do xác nhận giờ vào": "Đi muộn/về sớm",
+    "Lý do đi muộn": "Tai nạn, thiên tai, hỏa hoạn",
+    "Lý do xác nhận giờ ra": "Đi muộn/về sớm",
+    "Lý do về sớm": "Tai nạn, thiên tai, hỏa hoạn",
+    "Ghi chú": "test"
+  },
+  "Gio vao va gio ra 5": {
+    "Thời điểm cần xác nhận công": "Giờ vào và giờ ra",
+    "Lý do xác nhận giờ vào": "Đi muộn/về sớm",
+    "Lý do đi muộn": "Tai nạn, thiên tai, hỏa hoạn",
+    "Lý do xác nhận giờ ra": "Vắng mặt vì lý do khác",
+    "Chọn giờ ra ": "16:00",
+    "Ghi chú": "test"
+  },
+  "Gio vao va gio ra 6": {
+    "Thời điểm cần xác nhận công": "Giờ vào và giờ ra",
+    "Lý do xác nhận giờ vào": "Vắng mặt vì lý do khác",
+    "Lý do xác nhận giờ ra": "Quên chấm công giờ vào/ra",
+    "Chọn giờ vào ": "09:00",
+    "Chọn giờ ra ": "16:00",
+    "Ghi chú": "test"
+  },
+  "Gio vao va gio ra 7": {
+    "Thời điểm cần xác nhận công": "Giờ vào và giờ ra",
+    "Lý do xác nhận giờ vào": "Vắng mặt vì lý do khác",
+    "Lý do xác nhận giờ ra": "Đi muộn/về sớm",
+    "Lý do về sớm": "Tai nạn, thiên tai, hỏa hoạn",
+    "Chọn giờ vào ": "09:00",
+    "Ghi chú": "test"
+  },
+  "Gio vao va gio ra 8": {
+    "Thời điểm cần xác nhận công": "Giờ vào và giờ ra",
+    "Lý do xác nhận giờ vào": "Vắng mặt vì lý do khác",
+    "Lý do xác nhận giờ ra": "Vắng mặt vì lý do khác",
+    "Chọn giờ vào ": "09:00",
+    "Chọn giờ ra ": "16:00",
+    "Ghi chú": "test"
+  }
+}

@@ -6,8 +6,8 @@ import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
-        features = "classpath:features",
-        glue = {"steps", "hooks"},          // 👈 match your actual package
+        features = "src/test/resources/features",
+        glue = {"steps"},          // 👈 match your actual package
         plugin = {"pretty"}
 )
 public class CucumberTest {}

@@ -20,7 +20,7 @@ public class CsvDataReader {
                     record.put(headers[i].trim(), values[i].trim());
                 }
 
-                if (record.get("userId").equalsIgnoreCase(userId)) {
+                if (record.get("role").equalsIgnoreCase(userId)) {
                     return record;
                 }
             }

@@ -7,6 +7,8 @@ import io.appium.java_client.service.local.AppiumServiceBuilder;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actions.Open;
+import net.serenitybdd.screenplay.actors.OnStage;
+import net.serenitybdd.screenplay.actors.OnlineCast;
 import org.openqa.selenium.Dimension;
 import utils.SerenityConfigReader;
 
@@ -31,6 +33,11 @@ public class DriverHooks {
 
     private static AppiumDriverLocalService appiumService;
 
+    static {
+            OnStage.setTheStage(new OnlineCast());
+
+    }
+
     public static Actor loginAs(String role, String url) throws Exception {
         // ✅ Always close current driver when switching
         if (currentActor != null) {
@@ -50,7 +57,8 @@ public class DriverHooks {
                 webDriver.manage().window().setSize(new Dimension(1920, 1080));
             }
             actorDrivers.put(role, webDriver);
-            actor = Actor.named(role).whoCan(BrowseTheWeb.with(webDriver));
+            actor = OnStage.theActorCalled(role);
+            actor.can(BrowseTheWeb.with(webDriver));
             actor.attemptsTo(Open.url(url));
         }
         else if (platforms.contains("android") || platforms.contains("ios")) {
@@ -61,13 +69,17 @@ public class DriverHooks {
                     : DriverFactory.createIOSDriver();
 
             actorDrivers.put(role, mobileDriver);
-            actor = Actor.named(role).whoCan(BrowseTheWeb.with(mobileDriver));
+            actor = OnStage.theActorCalled(role);
+            actor.can(BrowseTheWeb.with(mobileDriver));
+//            actor = Actor.named(role).whoCan(BrowseTheWeb.with(mobileDriver));
         }
         else {
             throw new IllegalArgumentException("❌ Unknown platform: " + platforms);
         }
 
         currentActor = role;
+        // 🔹 Remember this actor as "in the spotlight"
+        Serenity.setSessionVariable("currentActor").to(actor.getName());
         return actor;
     }
 

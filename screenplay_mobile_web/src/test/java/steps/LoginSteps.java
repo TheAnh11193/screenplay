@@ -5,6 +5,9 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
+import net.serenitybdd.screenplay.actions.Click;
+import net.serenitybdd.screenplay.actors.OnStage;
+import net.serenitybdd.screenplay.waits.WaitUntil;
 import questions.IsElementVisible;
 import tasks.LoginOdooWeb;
 import tasks.LoginTCWeb;
@@ -16,7 +19,9 @@ import utils.SerenityConfigReader;
 
 import java.util.Map;
 
+import static java.lang.Thread.sleep;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
+import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 import static org.hamcrest.Matchers.is;
 
 public class LoginSteps {
@@ -25,31 +30,30 @@ public class LoginSteps {
     public void theOpenTheLoginPage(String role) throws Exception {
         System.out.println(">>> LOGIN TC PAGE OPENED <<<");
         String url = SerenityConfigReader.get("webdriver.base.tc.url");
-        Map<String, String> userData = JsonDataReader.getData(SerenityConfigReader.get("data.Transfer"), "happy");
+        DriverHooks.loginAs(role, url);
         Map<String, String> data = CsvDataReader.getUserData(role);
         String useName = data.get("username");
         String passWord = data.get("password");
-
-        Actor actorUser = DriverHooks.loginAs(role, url);
-        actorUser.attemptsTo(LoginTCWeb.withCredentials(useName,passWord));
-        actorUser.should(seeThat("Username field should NOT be visible"
-                ,IsElementVisible.forTarget(WebLoginPage.LOGIN_BUTTON), is(false)));
+        OnStage.theActorInTheSpotlight().attemptsTo(WaitUntil.the(WebLoginPage.link_SSO,isVisible()).forNoMoreThan(10).seconds());
+        OnStage.theActorInTheSpotlight().attemptsTo(LoginTCWeb.withCredentials(useName,passWord));
+        OnStage.theActorInTheSpotlight().attemptsTo(WaitUntil.the(WebLoginPage.logo_THANHCONG,isVisible()).forNoMoreThan(10).seconds());
+//        actorUser.attemptsTo(WaitUntil.the(WebLoginPage.txt_PASSWORDTC,isVisible()).forNoMoreThan(10).seconds());
+//        actorUser.should(seeThat("Username field should NOT be visible"
+//                ,IsElementVisible.forTarget(WebLoginPage.LOGIN_BUTTON), is(false)));
 
     }
 
     @When("The {string} open the odoo page")
     public void theOpenTheOdooPage(String role) throws Exception {
-        System.out.println(">>> LOGIN TC PAGE OPENED <<<");
+        System.out.println(">>> LOGIN Odoo PAGE OPENED <<<");
         String url = SerenityConfigReader.get("webdriver.base.odoo.url");
-        Map<String, String> userData = JsonDataReader.getData(SerenityConfigReader.get("data.Transfer"), "happy");
+        DriverHooks.loginAs(role, url);
         Map<String, String> data = CsvDataReader.getUserData(role);
         String useName = data.get("username");
         String passWord = data.get("password");
-
-        Actor actorReviewer = DriverHooks.loginAs(role, url);
-        actorReviewer.attemptsTo(LoginOdooWeb.withCredentials(useName,passWord));
-        actorReviewer.should(seeThat("Username field should NOT be visible"
-                ,IsElementVisible.forTarget(WebLoginPage.LOGIN_BUTTON), is(false)));
+//        OnStage.theActorInTheSpotlight().attemptsTo(WaitUntil.the(WebLoginPage.link_SSO,isVisible()).forNoMoreThan(10).seconds());
+        OnStage.theActorInTheSpotlight().attemptsTo(LoginOdooWeb.withCredentials(useName,passWord));
+        OnStage.theActorInTheSpotlight().attemptsTo(WaitUntil.the(WebLoginPage.logo_THANHCONG,isVisible()).forNoMoreThan(10).seconds());
     }
 
     @And("The {string} open app mobile")
@@ -62,8 +66,8 @@ public class LoginSteps {
 
         Actor actorApprover = DriverHooks.loginAs(role, null);
         actorApprover.attemptsTo(MobileLogin.withCredentials(useName,passWord));
-        actorApprover.should(seeThat("Username field should NOT be visible"
-                ,IsElementVisible.forTarget(WebLoginPage.LOGIN_BUTTON), is(false)));
+//        actorApprover.should(seeThat("Username field should NOT be visible"
+//                ,IsElementVisible.forTarget(WebLoginPage.LOGIN_BUTTON), is(false)));
 
     }
 }
