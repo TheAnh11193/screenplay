@@ -258,8 +258,8 @@ public class ThongTinXacNhanCong {
                     break;
                 case "Chọn giờ vào":
                     String[] partVao = value.split(":");
-                    String giovao = partVao[0];   // "08"
-                    String phutvao = partVao[1];
+                    String gioVao = partVao[0];   // "08"
+                    String phutVao = partVao[1];
                     OnStage.theActorInTheSpotlight().attemptsTo(
                             WaitUntil.the(BangCongChiTietPage.txtBx_CHONGIOVAO, isVisible()).forNoMoreThan(10).seconds()
                     );
@@ -268,20 +268,20 @@ public class ThongTinXacNhanCong {
                                     Click.on(BangCongChiTietPage.txtBx_CHONGIOVAO));
                     OnStage.theActorInTheSpotlight()
                             .attemptsTo(
-                                    Scroll.to(BangCongChiTietPage.OPTION_GIO(giovao)),
-                                    Click.on(BangCongChiTietPage.OPTION_GIO(giovao))
+                                    Scroll.to(BangCongChiTietPage.OPTION_GIO(gioVao)),
+                                    Click.on(BangCongChiTietPage.OPTION_GIO(gioVao))
                             );
                     OnStage.theActorInTheSpotlight()
                             .attemptsTo(
-                                    Scroll.to(BangCongChiTietPage.OPTION_PHUT(phutvao)),
-                                    Click.on(BangCongChiTietPage.OPTION_PHUT(phutvao))
+                                    Scroll.to(BangCongChiTietPage.OPTION_PHUT(phutVao)),
+                                    Click.on(BangCongChiTietPage.OPTION_PHUT(phutVao))
                             );
                     break;
 
                 case "Chọn giờ ra":
                     String[] partRa = value.split(":");
-                    String giora = partRa[0];   // "08"
-                    String phutra = partRa[1];
+                    String gioRa = partRa[0];   // "08"
+                    String phutRa = partRa[1];
                     OnStage.theActorInTheSpotlight().attemptsTo(
                             WaitUntil.the(BangCongChiTietPage.txtBx_CHONGIORA, isVisible()).forNoMoreThan(10).seconds()
                     );
@@ -290,13 +290,13 @@ public class ThongTinXacNhanCong {
                                     Click.on(BangCongChiTietPage.txtBx_CHONGIORA));
                     OnStage.theActorInTheSpotlight()
                             .attemptsTo(
-                                    Scroll.to(BangCongChiTietPage.OPTION_GIO(giora)),
-                                    Click.on(BangCongChiTietPage.OPTION_GIO(giora))
+                                    Scroll.to(BangCongChiTietPage.OPTION_GIO(gioRa)),
+                                    Click.on(BangCongChiTietPage.OPTION_GIO(gioRa))
                             );
                     OnStage.theActorInTheSpotlight()
                             .attemptsTo(
-                                    Scroll.to(BangCongChiTietPage.OPTION_PHUT(phutra)),
-                                    Click.on(BangCongChiTietPage.OPTION_PHUT(phutra))
+                                    Scroll.to(BangCongChiTietPage.OPTION_PHUT(phutRa)),
+                                    Click.on(BangCongChiTietPage.OPTION_PHUT(phutRa))
                             );
                     break;
 
