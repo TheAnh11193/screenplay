@@ -10,4 +10,5 @@ public class CommonConstants {
     public static final String CHON_GIO_VAO = "Chọn giờ vào ";
     public static final String CHON_GIO_RA = "Chọn giờ ra ";
     public static final String GHI_CHU = "Ghi chú";
+    public static final String ID_MA_CHAM_CONG = "Mã Chấm Công";
 }

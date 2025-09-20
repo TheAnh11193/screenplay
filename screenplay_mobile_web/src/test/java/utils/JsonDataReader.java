@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class JsonDataReader {
@@ -30,8 +31,9 @@ public class JsonDataReader {
             if (caseNode == null) {
                 throw new RuntimeException("❌ Case key not found in JSON: " + caseKey);
             }
-
-            Map<String, String> data = new HashMap<>();
+            // Use LinkedHashMap to preserve order
+//            Map<String, String> data = new HashMap<>();
+            Map<String, String> data = new LinkedHashMap<>();
             Iterator<String> fieldNames = caseNode.fieldNames();
             while (fieldNames.hasNext()) {
                 String field = fieldNames.next();

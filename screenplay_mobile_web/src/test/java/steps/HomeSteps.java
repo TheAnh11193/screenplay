@@ -8,13 +8,14 @@ import tasks.CreateAnnualLeaveWeb;
 import tasks.VerifyAllColorOfNote;
 import ui.BangCongChiTietPage;
 import ui.HomePage;
+import ui.PheDuyetXacNhanCongPage;
 import ui.WebLoginPage;
 import utils.JsonDataReader;
 import utils.SerenityConfigReader;
 
 import java.util.Map;
 
-import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
+import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.*;
 
 public class HomeSteps {
     @When("create annual leave")
@@ -39,5 +40,18 @@ public class HomeSteps {
         OnStage.theActorInTheSpotlight().attemptsTo(Click.on(HomePage.btn_MENU));
         OnStage.theActorInTheSpotlight().attemptsTo(Click.on(HomePage.btn_NHANSU));
         OnStage.theActorInTheSpotlight().attemptsTo(Click.on(HomePage.btn_BANGCONGCHITIET));
+        OnStage.theActorInTheSpotlight()
+                .attemptsTo(
+                        WaitUntil.the(BangCongChiTietPage.text_LOADING,isNotVisible()).forNoMoreThan(10).seconds());
+    }
+
+    @When("I open phê duyệt xác nhận công")
+    public void iOpenPhêDuyệtXácNhậnCông() {
+        OnStage.theActorInTheSpotlight().attemptsTo(Click.on(HomePage.btn_MENU));
+        OnStage.theActorInTheSpotlight().attemptsTo(Click.on(HomePage.btn_NHANSU));
+        OnStage.theActorInTheSpotlight().attemptsTo(Click.on(HomePage.btn_PHEDUYETXACNHANCONG));
+        OnStage.theActorInTheSpotlight()
+                .attemptsTo(
+                        WaitUntil.the(PheDuyetXacNhanCongPage.table_PHEDUYETXACNHANCONG,isVisible()).forNoMoreThan(10).seconds());
     }
 }

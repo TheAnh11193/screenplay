@@ -12,6 +12,8 @@ public class BangCongChiTietPage {
     public static Target color_NGAYLE = helper.get("colorNgayLe");
     public static Target color_LAMVIECNGOAIVANPHONG = helper.get("colorLamViecNgoaiVanPhong");
     public static Target color_KHONGDILAM = helper.get("colorKhongDiLam");
+    public static Target text_LOADING = helper.get("textLoading");
+
 
     public static Target date_NGAYXACNHANHCONG(String value) {
         return helper.getDynamic("ngayCanXacNhanCong", value);
@@ -30,4 +32,17 @@ public class BangCongChiTietPage {
     public static Target rd_SICK = helper.get("rdSick");
     public static Target rd_OBJECTIVE = helper.get("rdObjective");
     public static Target btn_GUI = helper.get("btnGui");
+    public static Target txt_MACHAMCONG = helper.get("txtMaChamCong");
+    public static Target alert_MESSAGE = helper.get("alertMessage");
+
+    public static Target btn_PHEDUYET = helper.get("btnPheDuyet");
+    public static Target btn_TUCHOI = helper.get("btnTuChoi");
+
+    public static Target OPTION_GIO(String value) {
+        return helper.getDynamic("txtNumberGio", value);
+    }
+
+    public static Target OPTION_PHUT(String value) {
+        return helper.getDynamic("txtNumberPhut", value);
+    }
 }

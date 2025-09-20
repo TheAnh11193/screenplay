@@ -2,13 +2,13 @@
   "Gio vao": {
     "Thời điểm cần xác nhận công": "Giờ vào",
     "Lý do xác nhận giờ vào": "Quên chấm công giờ vào/ra",
-    "Chọn giờ vào": "08:00",
+    "Chọn giờ vào": "17:50",
     "Ghi chú": "test"
   },
   "Gio vao 1": {
     "Thời điểm cần xác nhận công": "Giờ vào",
     "Lý do xác nhận giờ vào": "Đi muộn/về sớm",
-    "Lý do đi muộn": "Tai nạn, thiên tai, hỏa hoạn",
+    "Lý do đi muộn": "Lý do khách quan",
     "Ghi chú": "test"
   },
   "Gio vao 2": {
