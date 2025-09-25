@@ -43,18 +43,7 @@ public class LoginSteps {
 
     }
 
-    @When("The {string} open the odoo page")
-    public void theOpenTheOdooPage(String role) throws Exception {
-        System.out.println(">>> LOGIN Odoo PAGE OPENED <<<");
-        String url = SerenityConfigReader.get("webdriver.base.odoo.url");
-        DriverHooks.loginAs(role, url);
-        Map<String, String> data = CsvDataReader.getUserData(role);
-        String useName = data.get("username");
-        String passWord = data.get("password");
-//        OnStage.theActorInTheSpotlight().attemptsTo(WaitUntil.the(WebLoginPage.link_SSO,isVisible()).forNoMoreThan(10).seconds());
-        OnStage.theActorInTheSpotlight().attemptsTo(LoginOdooWeb.withCredentials(useName,passWord));
-        OnStage.theActorInTheSpotlight().attemptsTo(WaitUntil.the(WebLoginPage.logo_THANHCONG,isVisible()).forNoMoreThan(10).seconds());
-    }
+
 
     @And("The {string} open app mobile")
     public void theOpenAppMobile(String role) throws Exception {

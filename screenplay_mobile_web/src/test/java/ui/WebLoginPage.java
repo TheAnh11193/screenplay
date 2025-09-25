@@ -22,7 +22,5 @@ public class WebLoginPage {
         return helper.getDynamic("valueLoaiNghiorLoai", value);
     }
 
-    public static Target txt_USERNAMEODOO = helper.get("txtbxUserNameOdoo");
-    public static Target txt_PASSWORDODOO = helper.get("txtbxPasswordOdoo");
-    public static Target btn_LOGINODOO = helper.get("btnLoginOdoo");
+
 }

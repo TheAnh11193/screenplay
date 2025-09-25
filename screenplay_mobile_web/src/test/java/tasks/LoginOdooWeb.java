@@ -7,6 +7,7 @@ import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.actions.Open;
+import ui.OdooHomeMenuPage;
 import ui.WebLoginPage;
 import utils.SerenityConfigReader;
 
@@ -29,9 +30,9 @@ public class LoginOdooWeb implements Task{
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
-                Enter.theValue(username).into(WebLoginPage.txt_USERNAMEODOO),
-                Enter.theValue(password).into(WebLoginPage.txt_PASSWORDODOO),
-                Click.on(WebLoginPage.btn_LOGINODOO)
+                Enter.theValue(username).into(OdooHomeMenuPage.txt_USERNAMEODOO),
+                Enter.theValue(password).into(OdooHomeMenuPage.txt_PASSWORDODOO),
+                Click.on(OdooHomeMenuPage.btn_LOGINODOO)
         );
     }
 }

@@ -44,13 +44,17 @@
     "Chọn giờ ra": "16:00",
     "Ghi chú": "test"
   },
-  "Gio vao va gio ra": {
-    "Thời điểm cần xác nhận công": "Giờ vào và giờ ra",
-    "Lý do xác nhận giờ vào": "Quên chấm công giờ vào/ra",
-    "Lý do xác nhận giờ ra": "Quên chấm công giờ vào/ra",
-    "Chọn giờ vào ": "09:00",
-    "Chọn giờ ra ": "16:00",
-    "Ghi chú": "test"
+  "ID_26": {
+    "Thời điểm cần xác nhận công": "",
+    "Lý do xác nhận giờ vào": "",
+    "Lý do xác nhận giờ ra": "",
+    "Chọn giờ vào": "",
+    "Chọn giờ ra": "",
+    "Ghi chú": "",
+    "Thời điểm cần xác nhận công error messages" : "Vui lòng chọn thời điểm cần xác nhận công",
+    "Chọn giờ vào error messages" : "Vui lòng chọn giờ vào",
+    "Chọn giờ ra error messages" : "Vui lòng chọn giờ ra",
+    "Ghi chú error messages" : "Vui lòng nhập ghi chú"
   },
   "Gio vao va gio ra 1": {
     "Thời điểm cần xác nhận công": "Giờ vào và giờ ra",

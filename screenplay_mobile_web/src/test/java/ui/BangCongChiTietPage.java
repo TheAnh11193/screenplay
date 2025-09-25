@@ -45,4 +45,22 @@ public class BangCongChiTietPage {
     public static Target OPTION_PHUT(String value) {
         return helper.getDynamic("txtNumberPhut", value);
     }
+
+    public static Target txt_ERRORMESSAGES(String value) {
+        return helper.getDynamic("txtErrorMessages", value);
+    }
+
+    public static Target txt_RADIOLYDODIMUONVESOM(String value) {
+        return helper.getDynamic("txtRadioLyDiMuonVeSom", value);
+    }
+
+    public static Target radio_ACCIDENT(String value) {
+        return helper.getDynamic("radioAccident", value);
+    }
+    public static Target radio_SICK(String value) {
+        return helper.getDynamic("radioSick", value);
+    }
+    public static Target radio_OBJECTIVE(String value) {
+        return helper.getDynamic("radioObjective", value);
+    }
 }
