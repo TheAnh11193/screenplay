@@ -3,5 +3,9 @@
   <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/features/login/bangcong.feature" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/features/login/bangcong.feature" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/features/login/quenchamcong.feature" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/features/login/xacnhancong.feature" charset="UTF-8" />
   </component>
 </project>

@@ -1,5 +1,6 @@
 package steps;
 
+import actions.JavaScriptScroll;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actors.OnStage;
@@ -36,10 +37,23 @@ public class HomeSteps {
     }
 
     @When("I open bang cong chi tiet")
-    public void iOpenBangCongChiTiet() {
+    public void iOpenBangCongChiTiet() throws InterruptedException {
         OnStage.theActorInTheSpotlight().attemptsTo(Click.on(HomePage.btn_MENU));
         OnStage.theActorInTheSpotlight().attemptsTo(Click.on(HomePage.btn_NHANSU));
         OnStage.theActorInTheSpotlight().attemptsTo(Click.on(HomePage.btn_BANGCONGCHITIET));
+        OnStage.theActorInTheSpotlight()
+                .attemptsTo(
+                        WaitUntil.the(BangCongChiTietPage.text_BANGCONGCHITIET,isVisible()).forNoMoreThan(10).seconds());
+        Thread.sleep(5000);
+        OnStage.theActorInTheSpotlight()
+                .attemptsTo(
+                        WaitUntil.the(BangCongChiTietPage.text_LOADING,isNotVisible()).forNoMoreThan(10).seconds());
+        OnStage.theActorInTheSpotlight()
+                .attemptsTo(
+                        WaitUntil.the(BangCongChiTietPage.btn_PREVIOUSMONTH,isVisible()).forNoMoreThan(10).seconds());
+        OnStage.theActorInTheSpotlight().attemptsTo(
+                JavaScriptScroll.to(BangCongChiTietPage.btn_PREVIOUSMONTH),
+                Click.on(BangCongChiTietPage.btn_PREVIOUSMONTH));
         OnStage.theActorInTheSpotlight()
                 .attemptsTo(
                         WaitUntil.the(BangCongChiTietPage.text_LOADING,isNotVisible()).forNoMoreThan(10).seconds());

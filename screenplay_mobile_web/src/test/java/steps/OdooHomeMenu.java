@@ -31,7 +31,7 @@ public class OdooHomeMenu {
     }
 
     @When("I open chấm công menu")
-    public void iOpenChấmCôngMenu() {
+    public void iOpenChamCongMenu() {
         OnStage.theActorInTheSpotlight()
                 .attemptsTo(
                         WaitUntil.the(OdooHomeMenuPage.btn_MENUCHAMCONG,isVisible()).forNoMoreThan(10).seconds());

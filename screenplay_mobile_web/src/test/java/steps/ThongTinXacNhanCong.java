@@ -7,6 +7,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.core.Serenity;
+import net.serenitybdd.core.pages.WebElementFacade;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.actions.Scroll;
@@ -16,12 +17,21 @@ import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
 import net.serenitybdd.screenplay.questions.Text;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import tasks.VerifyDateColors;
 import ui.BangCongChiTietPage;
+import ui.OdooChamCongPage;
 import ui.WebLoginPage;
 import utils.CommonConstants;
 import utils.JsonDataReader;
+import utils.RgbaToHex;
 import utils.SerenityConfigReader;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
@@ -122,62 +132,68 @@ public class ThongTinXacNhanCong {
                     }
                     break;
                 case "Chọn giờ vào":
-                    String[] partVao = value.split(":");
-                    String gioVao = partVao[0];   // "08"
-                    String phutVao = partVao[1];
-                    OnStage.theActorInTheSpotlight().attemptsTo(
-                            WaitUntil.the(BangCongChiTietPage.txtBx_CHONGIOVAO, isVisible()).forNoMoreThan(10).seconds()
-                    );
-                    OnStage.theActorInTheSpotlight()
-                            .attemptsTo(
-                                    JavaScriptScroll.to(BangCongChiTietPage.txtBx_CHONGIOVAO),
-                                    Click.on(BangCongChiTietPage.txtBx_CHONGIOVAO));
-                    OnStage.theActorInTheSpotlight()
-                            .attemptsTo(
-                                    Scroll.to(BangCongChiTietPage.OPTION_GIO(gioVao)),
-                                    Click.on(BangCongChiTietPage.OPTION_GIO(gioVao))
-                            );
-                    OnStage.theActorInTheSpotlight()
-                            .attemptsTo(
-                                    Scroll.to(BangCongChiTietPage.OPTION_PHUT(phutVao)),
-                                    Click.on(BangCongChiTietPage.OPTION_PHUT(phutVao))
-                            );
-                    OnStage.theActorInTheSpotlight()
-                            .attemptsTo(
-                                    Click.on(BangCongChiTietPage.txtBx_CHONGIOVAO));
+                    if (value != null && !value.isEmpty()) {
+                        String[] partVao = value.split(":");
+                        String gioVao = partVao[0];   // "08"
+                        String phutVao = partVao[1];
+                        OnStage.theActorInTheSpotlight().attemptsTo(
+                                WaitUntil.the(BangCongChiTietPage.txtBx_CHONGIOVAO, isVisible()).forNoMoreThan(10).seconds()
+                        );
+                        OnStage.theActorInTheSpotlight()
+                                .attemptsTo(
+                                        JavaScriptScroll.to(BangCongChiTietPage.txtBx_CHONGIOVAO),
+                                        Click.on(BangCongChiTietPage.txtBx_CHONGIOVAO));
+                        OnStage.theActorInTheSpotlight()
+                                .attemptsTo(
+                                        Scroll.to(BangCongChiTietPage.OPTION_GIO(gioVao)),
+                                        Click.on(BangCongChiTietPage.OPTION_GIO(gioVao))
+                                );
+                        OnStage.theActorInTheSpotlight()
+                                .attemptsTo(
+                                        Scroll.to(BangCongChiTietPage.OPTION_PHUT(phutVao)),
+                                        Click.on(BangCongChiTietPage.OPTION_PHUT(phutVao))
+                                );
+                        OnStage.theActorInTheSpotlight()
+                                .attemptsTo(
+                                        Click.on(BangCongChiTietPage.txtBx_CHONGIOVAO));
+                    }
                     break;
 
                 case "Chọn giờ ra":
-                    String[] partRa = value.split(":");
-                    String gioRa = partRa[0];   // "08"
-                    String phutRa = partRa[1];
-                    OnStage.theActorInTheSpotlight().attemptsTo(
-                            WaitUntil.the(BangCongChiTietPage.txtBx_CHONGIORA, isVisible()).forNoMoreThan(10).seconds()
-                    );
-                    OnStage.theActorInTheSpotlight()
-                            .attemptsTo(
-                                    JavaScriptScroll.to(BangCongChiTietPage.txtBx_CHONGIORA),
-                                    Click.on(BangCongChiTietPage.txtBx_CHONGIORA));
-                    OnStage.theActorInTheSpotlight()
-                            .attemptsTo(
-                                    Scroll.to(BangCongChiTietPage.OPTION_GIO(gioRa)),
-                                    Click.on(BangCongChiTietPage.OPTION_GIO(gioRa))
-                            );
-                    OnStage.theActorInTheSpotlight()
-                            .attemptsTo(
-                                    Scroll.to(BangCongChiTietPage.OPTION_PHUT(phutRa)),
-                                    Click.on(BangCongChiTietPage.OPTION_PHUT(phutRa))
-                            );
+                    if (value != null && !value.isEmpty()) {
+                        String[] partRa = value.split(":");
+                        String gioRa = partRa[0];   // "08"
+                        String phutRa = partRa[1];
+                        OnStage.theActorInTheSpotlight().attemptsTo(
+                                WaitUntil.the(BangCongChiTietPage.txtBx_CHONGIORA, isVisible()).forNoMoreThan(10).seconds()
+                        );
+                        OnStage.theActorInTheSpotlight()
+                                .attemptsTo(
+                                        JavaScriptScroll.to(BangCongChiTietPage.txtBx_CHONGIORA),
+                                        Click.on(BangCongChiTietPage.txtBx_CHONGIORA));
+                        OnStage.theActorInTheSpotlight()
+                                .attemptsTo(
+                                        Scroll.to(BangCongChiTietPage.OPTION_GIO(gioRa)),
+                                        Click.on(BangCongChiTietPage.OPTION_GIO(gioRa))
+                                );
+                        OnStage.theActorInTheSpotlight()
+                                .attemptsTo(
+                                        Scroll.to(BangCongChiTietPage.OPTION_PHUT(phutRa)),
+                                        Click.on(BangCongChiTietPage.OPTION_PHUT(phutRa))
+                                );
+                    }
                     break;
 
                 case "Ghi chú":
-                    OnStage.theActorInTheSpotlight()
-                            .attemptsTo(
-                                    JavaScriptScroll.to(BangCongChiTietPage.txtBx_GHICHU),
-                                    Click.on(BangCongChiTietPage.txtBx_GHICHU));
-                    OnStage.theActorInTheSpotlight()
-                            .attemptsTo(
-                                    Enter.theValue(value).into(BangCongChiTietPage.txtBx_GHICHU));
+                    if (value != null && !value.isEmpty()) {
+                        OnStage.theActorInTheSpotlight()
+                                .attemptsTo(
+                                        JavaScriptScroll.to(BangCongChiTietPage.txtBx_GHICHU),
+                                        Click.on(BangCongChiTietPage.txtBx_GHICHU));
+                        OnStage.theActorInTheSpotlight()
+                                .attemptsTo(
+                                        Enter.theValue(value).into(BangCongChiTietPage.txtBx_GHICHU));
+                    }
                     break;
                 default:
                     break;
@@ -187,8 +203,8 @@ public class ThongTinXacNhanCong {
         // ✅ Submit after filling all fields
         OnStage.theActorInTheSpotlight()
                 .attemptsTo(
-                        Click.on(BangCongChiTietPage.btn_GUI));
-        Thread.sleep(20000);
+                        JavaScriptScroll.to(BangCongChiTietPage.btn_GUI),
+                        JavaScriptClick.on(BangCongChiTietPage.btn_GUI));
     }
 
     @And("Chọn ngày {string} cần tạo đơn")
@@ -520,8 +536,7 @@ public class ThongTinXacNhanCong {
     @And("Select {string} cho {string}")
     public void selectChoLyDoDiMuon(String value, String reason) {
         String lyDo1 = "Tai nạn, thiên tai, hỏa hoạn";
-        String lyDo2 = "CBNV hoặc vợ/chồng, con (con đẻ, con nuôi),\n" +
-                " tứ thân phụ mẫu bị ốm, có xác nhận của cơ sở khám chữa bệnh có thẩm quyền";
+        String lyDo2 = "CBNV hoặc vợ/chồng, con (con đẻ, con nuôi), tứ thân phụ mẫu bị ốm, có xác nhận của cơ sở khám chữa bệnh có thẩm quyền";
         String lyDo3 = "Lý do khách quan (sự kiện xảy ra khách quan không thể lường trước được, không thể khắc phục được mặc dù đã áp dụng mọi biện pháp cần thiết và khả năng cho phép)";
 
         OnStage.theActorInTheSpotlight().attemptsTo(
@@ -532,15 +547,15 @@ public class ThongTinXacNhanCong {
         OnStage.theActorInTheSpotlight().should(
                 seeThat("Quên chấm công giờ vào/ra should not be visible",
                         Visibility.of(
-                                BangCongChiTietPage.txt_RADIOLYDODIMUONVESOM(lyDo1)), is(true)));
+                                BangCongChiTietPage.txt_RADIOLYDODIMUONVESOM(reason,lyDo1)), is(true)));
         OnStage.theActorInTheSpotlight().should(
                 seeThat("Đi muộn/về sớm should not be visible",
                         Visibility.of(
-                                BangCongChiTietPage.txt_RADIOLYDODIMUONVESOM(lyDo2)), is(true)));
+                                BangCongChiTietPage.txt_RADIOLYDODIMUONVESOM(reason,lyDo2)), is(true)));
         OnStage.theActorInTheSpotlight().should(
                 seeThat("Vắng mặt vì lý do khác should not be visible",
                         Visibility.of(
-                                BangCongChiTietPage.txt_RADIOLYDODIMUONVESOM(lyDo3)), is(true)));
+                                BangCongChiTietPage.txt_RADIOLYDODIMUONVESOM(reason,lyDo3)), is(true)));
         switch (reason) {
             case "Lý do đi muộn":
             case "Lý do về sớm":
@@ -550,5 +565,239 @@ public class ThongTinXacNhanCong {
                 break;
             default:
         }
+    }
+
+    @Then("Verify đơn xin nghỉ sáng đi làm chiều ngày {string} được phê duyệt")
+    public void verifyDonXinNghiSangDiLamChieuNgayDuocPheDuyet(String date) {
+        OnStage.theActorInTheSpotlight().attemptsTo(
+                VerifyDateColors.forDateWithColors(date, "#1C3867", "#1CCD83")
+        );
+    }
+
+    @Then("Verify đơn xác nhận công ngày {string} được phê duyệt")
+    public void verifyDonXacNhanCongNgayDuocPheDuyet(String date) {
+        OnStage.theActorInTheSpotlight().attemptsTo(
+                VerifyDateColors.forDateWithColors(date, "#FFC83A")
+        );
+    }
+
+    @Then("Verify đơn xin nghỉ phép ngày {string} được phê duyệt")
+    public void verifyDonXinNghiPhepNgayDuocPheDuyet(String date) {
+        OnStage.theActorInTheSpotlight().attemptsTo(
+                VerifyDateColors.forDateWithColors(date, "#1C3867")
+        );
+    }
+
+    @Then("Verify đơn điều động công tác ngày {string} được phê duyệt")
+    public void verifyDonDieuDongCongTacNgayDuocPheDuyet(String date) {
+        OnStage.theActorInTheSpotlight().attemptsTo(
+                VerifyDateColors.forDateWithColors(date, "#6788FB")
+        );
+    }
+
+    @Then("Verify ngày {string} không có kết quả chấm công")
+    public void verifyNgayKhongCoKetQuaChamCong(String date) {
+        OnStage.theActorInTheSpotlight().attemptsTo(
+                VerifyDateColors.forDateWithColors(date, "#7D868D")
+        );
+    }
+
+    @And("Verify số ngày công {string}")
+    public void verifySoNgayCong(String status) throws InterruptedException {
+        Thread.sleep(10000);
+//        // All day cells in calendar
+//        List<WebElementFacade> dayCells = BangCongChiTietPage.list_DAYS
+//                .resolveAllFor(OnStage.theActorInTheSpotlight());
+//
+//        double total = 0;
+//
+//        LocalDate today = LocalDate.now();
+//        LocalDate endDate = today.minusDays(2);  // before current date 2 days
+//        LocalDate firstDay = today.withDayOfMonth(1);
+//
+//        for (WebElementFacade dayCell : dayCells) {
+//            String dateAttr = dayCell.getAttribute("data-date"); // e.g. 2025-09-03
+//            if (dateAttr == null || dateAttr.isEmpty()) continue;
+//
+//            LocalDate eventDate = LocalDate.parse(dateAttr);
+//
+//            // Only count from 1st -> today-2
+//            if (eventDate.isBefore(firstDay) || eventDate.isAfter(endDate)) {
+//                continue;
+//            }
+//
+//            // Saturday rule (always +0.5 regardless of color)
+//            if (status.equals("Hợp Lệ") && eventDate.getDayOfWeek() == DayOfWeek.SATURDAY) {
+//                total += 0.5;
+//                System.out.println("check ngay thu 7");
+//                continue; // skip further checks for this Saturday
+//            }
+//
+//            // Get all events inside this day
+//            List<WebElementFacade> colors = dayCell.thenFindAll(By.xpath(".//a[contains(@class,'fc-event')]"));
+//            System.out.println("check ngay " + dateAttr);
+//            System.out.println("Checking date: " + eventDate + " has " + colors.size() + " events");
+//
+//            for (WebElementFacade color : colors) {
+//                String rgba = color.getCssValue("background-color");
+//                String hex = RgbaToHex.convert(rgba);
+//
+//                switch (status) {
+//                    case "Hợp Lệ":
+//                        if (hex.equalsIgnoreCase("#1ccd83")) { // Green only for weekdays
+//                            total += 1;
+//                            System.out.println("check hop le"+ total);
+//                            break; // one event is enough
+//                        }
+//                        break;
+//
+//                    case "Không Hợp Lệ":
+//                        if (hex.equalsIgnoreCase("#fe5353")   // Red
+//                                || hex.equalsIgnoreCase("#7d868d")  // Gray
+//                                || hex.equalsIgnoreCase("#ffc83a")) { // Yellow
+//                            total += 1;
+//                            break;
+//                        }
+//                        break;
+//
+//                    case "Cần Giải Trình":
+//                        if (hex.equalsIgnoreCase("#fe5353")) { // Gray
+//                            total += 1;
+//                            break;
+//                        }
+//                        break;
+//
+//                    default:
+//                        break;
+//                }
+//            }
+//        }
+//
+//        // 🔎 Now fetch header value depending on status
+//        String actualText = "";
+//        switch (status) {
+//            case "Hợp Lệ":
+//                actualText = OnStage.theActorInTheSpotlight()
+//                        .asksFor(Text.of(BangCongChiTietPage.number_NGAYCONGHOPLE));
+//                break;
+//
+//            case "Không Hợp Lệ":
+//                actualText = OnStage.theActorInTheSpotlight()
+//                        .asksFor(Text.of(BangCongChiTietPage.number_NGAYCONGKHONGHOPLE));
+//                break;
+//
+//            case "Cần Giải Trình":
+//                actualText = OnStage.theActorInTheSpotlight()
+//                        .asksFor(Text.of(BangCongChiTietPage.number_NGAYCONGCANGIAITRINH));
+//                break;
+//
+//            default:
+//                return; // no check
+//        }
+//
+//        double actualTotal = Double.parseDouble(actualText.trim());
+//
+//        Assert.assertEquals(
+//                "Mismatch between calculated working days and header displayed value for status: " + status,
+//                total, actualTotal, 0.01
+//        );
+        List<WebElementFacade> dayCells = BangCongChiTietPage.list_DAYS
+                .resolveAllFor(OnStage.theActorInTheSpotlight());
+
+        double total = 0;
+
+        // Define month range
+        LocalDate firstDay = LocalDate.of(2025, 9, 1);
+        LocalDate lastDay = firstDay.withDayOfMonth(firstDay.lengthOfMonth());
+        LocalDate endDate = lastDay; // full month check
+
+        System.out.println("🔎 Checking month: " + 9 + "/" + 2025 + " from " + firstDay + " to " + endDate);
+
+        for (WebElementFacade dayCell : dayCells) {
+            String dateAttr = dayCell.getAttribute("data-date"); // e.g. 2025-09-03
+            if (dateAttr == null || dateAttr.isEmpty()) continue;
+
+            LocalDate eventDate = LocalDate.parse(dateAttr);
+
+            // Only count if inside the target month
+            if (eventDate.isBefore(firstDay) || eventDate.isAfter(endDate)) continue;
+
+            // Saturday rule (always +0.5 regardless of color)
+            if (status.equals("Hợp Lệ") && eventDate.getDayOfWeek() == DayOfWeek.SATURDAY) {
+                total += 0.5;
+                System.out.println("🟢 Counted Saturday: " + eventDate + " (+0.5)");
+                continue; // skip further checks for this Saturday
+            }
+
+            // Get all events inside this day
+            List<WebElementFacade> colors = dayCell.thenFindAll(By.xpath(".//*[contains(@class,'fc-event')]"));
+            System.out.println("Checking date: " + eventDate + " has " + colors.size() + " events");
+
+            for (WebElementFacade color : colors) {
+                String rgba = color.getCssValue("background-color");
+                String hex = RgbaToHex.convert(rgba);
+
+                switch (status) {
+                    case "Hợp Lệ":
+                        if (hex.toLowerCase().startsWith("#1ccd")) { // Flexible green check
+                            total += 1;
+                            System.out.println("Hợp Lệ day: " + eventDate + " (" + hex + ")");
+                            break;
+                        }
+                        break;
+
+                    case "Không Hợp Lệ":
+                        if (hex.equalsIgnoreCase("#fe5353")   // Red
+                                || hex.equalsIgnoreCase("#7d868d")  // Gray
+                                || hex.equalsIgnoreCase("#ffc83a")) { // Yellow
+                            total += 1;
+                            System.out.println("Không Hợp Lệ day: " + eventDate + " (" + hex + ")");
+                            break;
+                        }
+                        break;
+
+                    case "Cần Giải Trình":
+                        if (hex.equalsIgnoreCase("#fe5353") || hex.equalsIgnoreCase("#7d868d")) {
+                            total += 1;
+                            System.out.println("Cần Giải Trình day: " + eventDate + " (" + hex + ")");
+                            break;
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        }
+
+        // Now fetch header value depending on status
+        String actualText = "";
+        switch (status) {
+            case "Hợp Lệ":
+                actualText = OnStage.theActorInTheSpotlight()
+                        .asksFor(Text.of(BangCongChiTietPage.number_NGAYCONGHOPLE));
+                break;
+
+            case "Không Hợp Lệ":
+                actualText = OnStage.theActorInTheSpotlight()
+                        .asksFor(Text.of(BangCongChiTietPage.number_NGAYCONGKHONGHOPLE));
+                break;
+
+            case "Cần Giải Trình":
+                actualText = OnStage.theActorInTheSpotlight()
+                        .asksFor(Text.of(BangCongChiTietPage.number_NGAYCONGCANGIAITRINH));
+                break;
+
+            default:
+                return; // no check
+        }
+
+        double actualTotal = Double.parseDouble(actualText.trim());
+        System.out.println("✅ Calculated total: " + total + " | Header total: " + actualTotal);
+
+        Assert.assertEquals(
+                "Mismatch between calculated working days and header displayed value for status: " + status,
+                total, actualTotal, 0.01
+        );
     }
 }

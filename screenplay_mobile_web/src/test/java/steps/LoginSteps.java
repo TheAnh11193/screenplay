@@ -40,7 +40,7 @@ public class LoginSteps {
 //        actorUser.attemptsTo(WaitUntil.the(WebLoginPage.txt_PASSWORDTC,isVisible()).forNoMoreThan(10).seconds());
 //        actorUser.should(seeThat("Username field should NOT be visible"
 //                ,IsElementVisible.forTarget(WebLoginPage.LOGIN_BUTTON), is(false)));
-
+        Thread.sleep(5000);
     }
 
 

@@ -48,11 +48,11 @@ public class LocatorHelper {
 
     private Target locator(String key, String value) {
         if (value.startsWith("id:")) {
-            return Target.the(key).located(By.id(value.replace("id:", "")));
+            return Target.the(key).locatedBy("//*[@id='" + value.replace("id:", "") + "']");
         } else if (value.startsWith("css:")) {
-            return Target.the(key).located(By.cssSelector(value.replace("css:", "")));
+            return Target.the(key).locatedBy(value.replace("css:", ""));
         } else if (value.startsWith("xpath:") || value.startsWith("//")) {
-            return Target.the(key).located(By.xpath(value.replace("xpath:", "")));
+            return Target.the(key).locatedBy(value.replace("xpath:", ""));
         }
         throw new RuntimeException("Unsupported locator format for key: " + key + " → " + value);
     }

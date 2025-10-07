@@ -13,6 +13,7 @@ public class BangCongChiTietPage {
     public static Target color_LAMVIECNGOAIVANPHONG = helper.get("colorLamViecNgoaiVanPhong");
     public static Target color_KHONGDILAM = helper.get("colorKhongDiLam");
     public static Target text_LOADING = helper.get("textLoading");
+    public static Target text_BANGCONGCHITIET = helper.get("textBangCongChiTiet");
 
 
     public static Target date_NGAYXACNHANHCONG(String value) {
@@ -50,8 +51,8 @@ public class BangCongChiTietPage {
         return helper.getDynamic("txtErrorMessages", value);
     }
 
-    public static Target txt_RADIOLYDODIMUONVESOM(String value) {
-        return helper.getDynamic("txtRadioLyDiMuonVeSom", value);
+    public static Target txt_RADIOLYDODIMUONVESOM(String value1, String value2) {
+        return helper.getDynamic("txtRadioLyDiMuonVeSom", value1, value2);
     }
 
     public static Target radio_ACCIDENT(String value) {
@@ -63,4 +64,10 @@ public class BangCongChiTietPage {
     public static Target radio_OBJECTIVE(String value) {
         return helper.getDynamic("radioObjective", value);
     }
+
+    public static Target list_DAYS = helper.get("listDays");
+    public static Target number_NGAYCONGHOPLE = helper.get("txtNgayCongHopLe");
+    public static Target number_NGAYCONGKHONGHOPLE = helper.get("txtNgayCongKhongHopLe");
+    public static Target number_NGAYCONGCANGIAITRINH = helper.get("txtNgayCongCanGiaiTrinh");
+    public static Target btn_PREVIOUSMONTH = helper.get("btnPreviousMonth");
 }
