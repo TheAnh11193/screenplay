@@ -1,4 +1,5 @@
 package tasks;
+import io.appium.java_client.android.AndroidDriver;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
@@ -22,7 +23,9 @@ public class MobileLogin implements Task {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
+        AndroidDriver driver = actor.recall("MOBILE_DRIVER");
         actor.attemptsTo(
+                Click.on(MobileLoginPage.BUTTON_ACC),
                 Enter.theValue(username).into(MobileLoginPage.USERNAME),
                 Enter.theValue(password).into(MobileLoginPage.PASSWORD),
                 Click.on(MobileLoginPage.LOGIN_BUTTON)
