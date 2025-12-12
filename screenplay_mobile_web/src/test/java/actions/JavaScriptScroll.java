@@ -23,6 +23,6 @@ public class JavaScriptScroll implements Interaction {
     public <T extends Actor> void performAs(T actor) {
         WebElement element = target.resolveFor(actor);
         JavascriptExecutor js = (JavascriptExecutor) BrowseTheWeb.as(actor).getDriver();
-        js.executeScript("arguments[0].scrollIntoView(true);", element);
+        js.executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", element);
     }
 }

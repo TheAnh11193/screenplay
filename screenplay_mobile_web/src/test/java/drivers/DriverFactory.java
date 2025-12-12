@@ -26,7 +26,11 @@ public class DriverFactory {
                 return new EdgeDriver();
             case "chrome":
             default:
-                WebDriverManager.chromedriver().setup();
+                String chromePath = SerenityConfigReader.get("chrome.driver");
+                if (chromePath != null && !chromePath.isEmpty()){
+                    System.setProperty("webdriver.chrome.driver", chromePath);
+                }
+//                WebDriverManager.chromedriver().setup();
                 return new ChromeDriver();
         }
     }

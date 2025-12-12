@@ -1,5 +1,2 @@
-role,username,password,Fullname
-user,anhnvv@thanhcong.vn,1,Nguyễn Văn Việt Anh
-reviewer,phongph@thanhcong.vn,1,phong
-approver,thanhnt@thanhcong.vn,1,thanh
-user1,huongdx@thanhcong.vn,1,huong
+role,username,password
+user,121133045,1234567a@A

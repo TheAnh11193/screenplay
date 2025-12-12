@@ -9,7 +9,6 @@ import tasks.VerifyAllColorOfNote;
 import ui.BangCongChiTietPage;
 import ui.HomePage;
 import ui.PheDuyetXacNhanCongPage;
-import ui.WebLoginPage;
 import utils.JsonDataReader;
 import utils.SerenityConfigReader;
 

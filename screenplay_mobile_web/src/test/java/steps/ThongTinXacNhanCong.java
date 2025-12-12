@@ -1,23 +1,19 @@
 package steps;
 
 import actions.JavaScriptClick;
-import actions.JavaScriptScroll;
 import actions.JavaScriptScrollToTop;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.actions.Scroll;
 import net.serenitybdd.screenplay.actors.OnStage;
 
-import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
 import net.serenitybdd.screenplay.questions.Text;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 import org.junit.Assert;
 import ui.BangCongChiTietPage;
-import ui.WebLoginPage;
 import utils.CommonConstants;
 import utils.JsonDataReader;
 import utils.SerenityConfigReader;
