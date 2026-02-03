@@ -26,7 +26,7 @@ public class WebEbizChuyenTienPage {
     public static Target cardbox_NHATKYGIAODICH = helper.get("cardboxNhatKyGiaoDich");
     public static Target title_DANHSACHGIAODICH = helper.get("titleDanhSachGiaoDich");
     public static Target table_NUMBERMAGIAODICH(String value) {
-
         return helper.getDynamic("tableNumberMaGiaoDich", value);
     }
+    public static Target text_LOADING = helper.get("textLoading");
 }

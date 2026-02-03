@@ -46,6 +46,7 @@ public class EbizWebChuyenTienSteps {
             case"Chuyen tien theo lo":
                 OnStage.theActorInTheSpotlight().attemptsTo(WaitUntil.the(WebEbizChuyenTienPage.menu_CONTENTCHUYENTIENTHEOLO,isVisible()).forNoMoreThan(10).seconds());
                 OnStage.theActorInTheSpotlight().attemptsTo(Click.on(WebEbizChuyenTienPage.menu_CONTENTCHUYENTIENTHEOLO));
+
                 break;
             default:
         }
@@ -54,6 +55,7 @@ public class EbizWebChuyenTienSteps {
     @And("User nhap thong tin theo {string}")
     public void userNhapThongTinTheo(String caseKey) {
         // Write code here that turns the phrase above into concrete actions
+        OnStage.theActorInTheSpotlight().attemptsTo(WaitUntil.the(WebEbizChuyenTienPage.text_LOADING,isNotVisible()).forNoMoreThan(30).seconds());
         Map<String, String> dataChuyenTien = JsonDataReader.getData(SerenityConfigReader.get("data.chuyentien"), caseKey);
         for (Map.Entry<String, String> entry : dataChuyenTien.entrySet()) {
             String field = entry.getKey();
@@ -62,6 +64,8 @@ public class EbizWebChuyenTienSteps {
             switch (field) {
                 case "Pham vi chuyen":
                     if (value != null && !value.isEmpty()) {
+                        OnStage.theActorInTheSpotlight().attemptsTo(
+                                WaitUntil.the(WebEbizChuyenTienPage.btn_PHAMVICHUYEN(value),isVisible()).forNoMoreThan(30).seconds());
                         OnStage.theActorInTheSpotlight()
                                 .attemptsTo(
                                         Click.on(WebEbizChuyenTienPage.btn_PHAMVICHUYEN(value)));
@@ -152,6 +156,11 @@ public class EbizWebChuyenTienSteps {
         OnStage.theActorInTheSpotlight().attemptsTo(Click.on(WebEbizChuyenTienPage.cardbox_NHATKYGIAODICH));
         OnStage.theActorInTheSpotlight().attemptsTo(WaitUntil.the(WebEbizChuyenTienPage.title_DANHSACHGIAODICH,isVisible()).forNoMoreThan(10).seconds());
         String magiaodich = Serenity.sessionVariableCalled(MA_GIAO_DICH);
-        OnStage.theActorInTheSpotlight().attemptsTo(WaitUntil.the(WebEbizChuyenTienPage.table_NUMBERMAGIAODICH(magiaodich),isVisible()).forNoMoreThan(10).seconds());
+        OnStage.theActorInTheSpotlight().attemptsTo(
+                JavaScriptScroll.to(WebEbizChuyenTienPage.table_NUMBERMAGIAODICH(magiaodich)),
+                WaitUntil.the(WebEbizChuyenTienPage.table_NUMBERMAGIAODICH(magiaodich), isVisible()).forNoMoreThan(10).seconds()
+        );
+
+//        OnStage.theActorInTheSpotlight().attemptsTo(WaitUntil.the(WebEbizChuyenTienPage.table_NUMBERMAGIAODICH(magiaodich),isVisible()).forNoMoreThan(10).seconds());
     }
 }

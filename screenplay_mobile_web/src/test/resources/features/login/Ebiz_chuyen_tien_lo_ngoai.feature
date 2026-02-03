@@ -1,6 +1,7 @@
 @EbizChuyentienlongoai
 Feature: Ebiz
 
+  @Ebiz01
   Scenario: Ebiz Chuyen tien lo ngoai
     Given The "user" open the Ebiz login page
     When User khoi tao "Chuyen tien theo lo" giao dich

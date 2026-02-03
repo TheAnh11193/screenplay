@@ -28,7 +28,7 @@ public class LoginSteps {
 
     @Given("The {string} open the Ebiz login page")
     public void theOpenTheLoginPage(String role) throws Exception {
-        System.out.println(">>> LOGIN TC PAGE OPENED <<<");
+        System.out.println(">>> LOGIN Ebiz PAGE OPENED <<<");
         String url = SerenityConfigReader.get("webdriver.base.Ebiz");
         DriverHooks.loginAs(role, url);
         Map<String, String> data = CsvDataReader.getUserData(role);
